@@ -1,10 +1,11 @@
 import requests
 import xmltodict as xmltodict
 
-from constants import CREATE_USERS, LIST_USERS
+from constants import CREATE_USERS, LIST_USERS, USERS_USERNAME_VAR, USERS_PASSWORD_VAR
 
 
-def list_all_users(pentaho=None):
+# TODO implement regex filtering
+def list_all_users(pentaho=None, regex=None):
     """
     Get list of all users
     :param pentaho: the pentaho user object
@@ -37,8 +38,8 @@ def create_user(pentaho=None, username=None, password=None):
     if not username or not password:
         raise ValueError("[ERROR] user creation parameters missing ... ")
     user_credentials = {
-        "userName": username,
-        "password": password,
+        USERS_USERNAME_VAR: username,
+        USERS_PASSWORD_VAR: password,
     }
     response = requests.put(pentaho.get_user_urls(endpoint_type=CREATE_USERS),
                             auth=(pentaho.pentaho_username, pentaho.pentaho_password),

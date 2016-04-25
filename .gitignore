@@ -64,3 +64,6 @@ target/
 
 #pycharm
 .idea
+
+#egg
+*.egg-info
