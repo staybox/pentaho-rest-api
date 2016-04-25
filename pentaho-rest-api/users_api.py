@@ -1,7 +1,12 @@
+import logging
+from pyexpat import ExpatError
+
 import requests
 import xmltodict as xmltodict
 
 from constants import CREATE_USERS, LIST_USERS, USERS_USERNAME_VAR, USERS_PASSWORD_VAR
+
+logger = logging.getLogger(__name__)
 
 
 # TODO implement regex filtering
@@ -15,11 +20,13 @@ def list_all_users(pentaho=None, regex=None):
     user_list = list()
     if not pentaho:
         raise ValueError("[ERROR] Pentaho object is missing ... ")
-    print pentaho.get_user_urls(endpoint_type=LIST_USERS)
     response = requests.get(pentaho.get_user_urls(endpoint_type=LIST_USERS),
                             auth=(pentaho.pentaho_username, pentaho.pentaho_password))
     if response.status_code == 200:
-        user_list = xmltodict.parse(response.text)['users']['user']
+        try:
+            user_list = xmltodict.parse(response.text)['users']['user']
+        except Exception, e:
+            logger.exception(e)
     return response, user_list
 
 
