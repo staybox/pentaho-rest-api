@@ -1,6 +1,14 @@
+import os
+
 from setuptools import setup, find_packages
 # To use a consistent encoding
 from codecs import open
+
+with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
+    README = readme.read()
+
+# allow setup.py to be run from any path
+os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 
 def get_requirements():
@@ -18,10 +26,7 @@ reqs = get_requirements()
 setup(
         name='pentaho-rest-api',
 
-        # Versions should comply with PEP440.  For a discussion on single-sourcing
-        # the version across setup.py and the project code, see
-        # https://packaging.python.org/en/latest/single_source_version.html
-        version='1.0.4',
+        version='1.0.5',
 
         include_package_data=True,
 
@@ -34,7 +39,7 @@ setup(
         long_description='Python library for the pentaho BA REST API',
 
         # The project's main homepage.
-        url='git@github.com:AlayaCare/pentaho-rest-api.git',
+        url='https://github.com/AlayaCare/pentaho-rest-api',
 
         # Author details
         author='Saqib Khalil Yawar',
@@ -44,6 +49,7 @@ setup(
             'Development Status :: 3 - Alpha',
             'Intended Audience :: Developers',
             'Topic :: Software Development :: Build Tools',
+            'Programming Language :: Python',
             'Programming Language :: Python :: 2.7',
             'License :: OSI Approved :: GNU General Public License (GPL)'
         ],
@@ -60,9 +66,4 @@ setup(
             'test': reqs,
         },
 
-        # entry_points={
-        #     'console_scripts': [
-        #         'users_api=pentaho-rest-api.scripts.info:info',
-        #     ],
-        # },
 )
