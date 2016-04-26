@@ -1,4 +1,4 @@
-# pentaho-rest-api
+# pentaho-rest-api https://travis-ci.org/AlayaCare/pentaho-rest-api.svg?branch=feature%2Fuser-api
 Python Library to access the Pentaho BA REST API
 
 ### Version
