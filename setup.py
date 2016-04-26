@@ -4,29 +4,26 @@ from setuptools import setup, find_packages
 # To use a consistent encoding
 from codecs import open
 
-with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
-    README = readme.read()
+README_FILENAME = "README.md"
+REQ_FILENAME = "requirements.txt"
+README = 'Python library for the pentaho BA REST API'
+requirements = []
+
+if os.path.isfile(README_FILENAME):
+    with open(README_FILENAME) as readme:
+        README = readme.read()
+
+if os.path.isfile(REQ_FILENAME):
+    with open(REQ_FILENAME) as f:
+        requirements = f.read().splitlines()
 
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
-
-def get_requirements():
-    """Simply read the requirements.txt file and returns the list of the dependencies.
-    :returns: list of requirements
-    """
-    with open('requirements.txt') as f:
-        requirements = f.read().splitlines()
-
-    return requirements
-
-
-reqs = get_requirements()
-
 setup(
         name='pentaho-rest-api',
 
-        version='1.0.5',
+        version='1.0.11',
 
         include_package_data=True,
 
@@ -59,11 +56,19 @@ setup(
 
         packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
-        install_requires=reqs,
+        # packages=['penapi'],
+
+        install_requires=requirements,
+
+        entry_points={
+            'console_scripts': [
+                'Pentaho=pentaho:Pentaho',
+            ],
+        },
 
         extras_require={
-            'dev': reqs,
-            'test': reqs,
+            'dev': requirements,
+            'test': requirements,
         },
 
 )

@@ -1,8 +1,8 @@
 import pytest
 import requests_mock
 
-import users_api
-from pentaho import Pentaho
+from penapi import users_api
+from penapi.pentaho import Pentaho
 from templates.user_api_return import LIST_USERS
 
 
