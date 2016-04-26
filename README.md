@@ -1,7 +1,6 @@
 # pentaho-rest-api 
 
-.. image:: https://travis-ci.org/AlayaCare/pentaho-rest-api.svg?branch=master
-    :target: https://travis-ci.org/AlayaCare/pentaho-rest-api
+[![Build Status](https://travis-ci.org/AlayaCare/pentaho-rest-api.svg?branch=master)](https://travis-ci.org/AlayaCare/pentaho-rest-api)
 
 Python Library to access the Pentaho BA REST API
 
