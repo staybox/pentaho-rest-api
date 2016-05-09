@@ -6,6 +6,7 @@ from constants import (
     PENTAHO_ROLE_ENDPOINT_DEFINITION
 )
 from users_api import PentahoUsersAPI
+from roles_api import PentahoRolesAPI
 import requests
 import urlparse
 
@@ -53,6 +54,7 @@ class Pentaho(object):
         self.do_ssl_check = ssl_check if type(ssl_check) is bool else strtobool(ssl_check)
         self.pentaho_auth_method = pentaho_auth_method
         self.users = PentahoUsersAPI(self)
+        self.roles = PentahoRolesAPI(self)
 
     def set_auth_method(self, pentaho_auth_method):
         self.pentaho_auth_method = pentaho_auth_method
@@ -84,7 +86,7 @@ class Pentaho(object):
     def make_call(self, type, endpoint, **kwargs):
         kwargs.update(**self.get_auth_kwarg())
         if type not in PENTAHO_AVAILABLE_ENDPOINT_TYPE:
-            raise ValueError("[ERROR] api type improper definition ... ")
+            raise ValueError("[ERROR] api type improper definition... ")
         method, url = self.get_endpoint_method_url(PENTAHO_AVAILABLE_ENDPOINT_TYPE[type], endpoint)
         return requests.request(method, url, verify=self.do_ssl_check, **kwargs)
 
@@ -96,7 +98,7 @@ class Pentaho(object):
         :return: (method, url)
         """
         if not endpoint or endpoint not in type:
-            raise ValueError("[ERROR] get_endpoint_method_url::endpoint_type improper definition ... ")
+            raise ValueError("[ERROR] get_endpoint_method_url::endpoint_type improper definition... ")
         endpoint_method, endpoint_url = type[endpoint]
         pentaho_endpoint = urlparse.urljoin(self.pentaho_base_url, endpoint_url)
         if not self.validate_urls(pentaho_endpoint):

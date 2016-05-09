@@ -48,7 +48,7 @@ class PentahoUsersAPI(PentahoBaseAPI):
         :rtype: boolean
         """
         if not username or not password:
-            raise ValueError("[ERROR] user creation parameters missing ... ")
+            raise ValueError("[ERROR] user creation parameters missing... ")
         user_credentials = {
             USERS_USERNAME_VAR: username,
             USERS_PASSWORD_VAR: password,
@@ -66,7 +66,7 @@ class PentahoUsersAPI(PentahoBaseAPI):
         :rtype: boolean
         """
         if not username or not old_password or not new_password:
-            raise ValueError("[ERROR] user creation parameters missing ... ")
+            raise ValueError("[ERROR] user creation parameters missing... ")
         user_password_change = {
             USERS_USERNAME_VAR: username,
             USERS_OLD_PASSWORD_VAR: old_password,
@@ -84,7 +84,7 @@ class PentahoUsersAPI(PentahoBaseAPI):
         :rtype: boolean
         """
         if not usernames:
-            raise ValueError("[ERROR] user delete parameters missing ... ")
+            raise ValueError("[ERROR] user delete parameters missing... ")
         if type(usernames) is list:
             usernames = '\t'.join(usernames)
         response = self._pentaho.make_call(PENTAHO_USERS_ENDPOINT_API, USERS_DELETE_VAR,

@@ -9,6 +9,7 @@ PENTAHO_USERS_ENDPOINT_API = "users"
 
 USERS_USERNAME_VAR = "userName"
 USERS_PASSWORD_VAR = "password"
+
 USERS_NEW_PASSWORD_VAR = "newPassword"
 USERS_OLD_PASSWORD_VAR = "oldPassword"
 USERS_DELETE_VAR = "userNames"
@@ -32,14 +33,16 @@ PENTAHO_USER_ENDPOINT_DEFINITION = {
 
 PENTAHO_ROLES_ENDPOINT_API = "roles"
 
+ROLES_ASSIGN_VAR = "roleNames"
+
 GET_ROLES_FOR_USER = "list_user_roles"
 ASSIGN_ROLE_TO_USER = "assign_role_to_user"
 REMOVE_ROLE_FROM_USER = "remove_role_from_user"
 
 PENTAHO_ROLE_ENDPOINT_DEFINITION = {
-    GET_ROLES_FOR_USER: "/pentaho/api/userroledao/userRoles",
-    ASSIGN_ROLE_TO_USER: "/pentaho/api/userroledao/assignRoleToUser",
-    REMOVE_ROLE_FROM_USER: "/pentaho/api/userroledao/removeRoleFromUser"
+    GET_ROLES_FOR_USER: ("get", "/pentaho/api/userroledao/userRoles"),
+    ASSIGN_ROLE_TO_USER: ("put", "/pentaho/api/userroledao/assignRoleToUser"),
+    REMOVE_ROLE_FROM_USER: ("put", "/pentaho/api/userroledao/removeRoleFromUser")
 #     CREATE_ROLE: "/pentaho/api/userroledao/createRole",
 #     DELETE_ROLE: "/pentaho/api/userroledao/deleteRoles",
 #     LIST_ROLES: "/pentaho/api/userroledao/roles",
