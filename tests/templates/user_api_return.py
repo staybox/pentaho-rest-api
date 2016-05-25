@@ -1,2 +1,2 @@
-LIST_USERS = '<?xml version="1.0" encoding="UTF-8"?>\n<users><user>pat</user><user>suzy</user><user>newUser</user>' \
-             '<user>admin</user><user>tiffany</user><user>newUser2</user></users>'
+LIST_USERS = '<?xml version="1.0" encoding="UTF-8"?>\n<userList><users>pat</users><users>suzy</users><users>newUser</users>' \
+             '<users>admin</users><users>tiffany</users><users>newUser2</users></userList>'

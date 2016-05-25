@@ -16,7 +16,10 @@ from constants import (
 
 from penapi.base_api import PentahoBaseAPI
 
-logger = logging.getLogger(__name__)
+try:
+    logger = logging.getLogger(__name__)
+except Exception:
+    logger = logging.getLogger("PENTAHO_USERS_API")
 
 
 class PentahoUsersAPI(PentahoBaseAPI):
