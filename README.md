@@ -5,10 +5,10 @@
 Python library to make call to Pentaho BA server via its REST API.
 Supported Penthao BA Server is 6.0 and more.
 
-### Version
+## Version
 1.0.11
 
-### Installation
+## Installation
 
 Installing the library from the pip package
 
@@ -98,6 +98,6 @@ user_list = panapi.users.list()
 ```
 All apis available via Pentaho object can be called via _penapi_ lib, after setting the authentication.
 
-License
-----
+## License
+
 GPL
