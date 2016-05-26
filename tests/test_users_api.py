@@ -2,7 +2,7 @@ import pytest
 import requests_mock
 
 from penapi.pentaho import Pentaho
-from templates.user_api_return import LIST_USERS
+from templates.users_api_return import LIST_USERS
 
 
 @pytest.fixture
