@@ -7,6 +7,7 @@ from constants import (
     CREATE_USERS,
     LIST_USERS,
     CHANGE_USER_PASSWORD,
+    DELETE_USERS,
     USERS_USERNAME_VAR,
     USERS_PASSWORD_VAR,
     USERS_NEW_PASSWORD_VAR,
@@ -90,6 +91,6 @@ class PentahoUsersAPI(PentahoBaseAPI):
             raise ValueError("[ERROR] user delete parameters missing... ")
         if type(usernames) is list:
             usernames = '\t'.join(usernames)
-        response = self._pentaho.make_call(PENTAHO_USERS_ENDPOINT_API, USERS_DELETE_VAR,
+        response = self._pentaho.make_call(PENTAHO_USERS_ENDPOINT_API, DELETE_USERS,
                                            params={USERS_DELETE_VAR: usernames})
         return response.status_code == 200

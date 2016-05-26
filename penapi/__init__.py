@@ -12,6 +12,7 @@ from penapi.pentaho import (
 _pentaho_obj = Pentaho()
 
 users = _pentaho_obj.users
+roles = _pentaho_obj.roles
 
 
 def set_basic_auth_method(username, password):
