@@ -67,3 +67,8 @@ pentaho = Pentaho(pentaho_base_url='http://mysite.com/pentaho')
 
 pentaho.set_auth_method(PentahoCookieAuth('my_cookie_value'))
 ```
+
+## SSL Certificate
+
+If your Pentaho instance is with SSL but without valid certificate, you can disable certificate validation.
+`pentaho.set_ssl_check(False)`
