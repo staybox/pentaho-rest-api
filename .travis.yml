@@ -1,11 +1,15 @@
 language: python
 python:
 - '2.7'
-script:
-- make test
-# command to install dependencies
-install:
-  - pip install .
-  - pip install -r requirements.txt
-# command to run tests
 script: py.test .
+install:
+- pip install .
+- pip install -r requirements.txt
+deploy:
+  provider: pypi
+  user: syawaralayacare
+  password:
+    secure: rzdVz+msGtQUuZ4ufe59xpQCcKs0sZ2mfNcdaXC/ae8ver5o8gcoQ4UvEK4/x/zG0d+Q/PK/ZAsaCOHa4NpnV0Lmuh8cVN8zqCNApQ0HEJqZT4ZzKGlhfNSRrwUxb8KeJNhfLVKNo8S3Xd2ACgNQr9gHYGVEEyapJQ8LAAHb9/wX2FZehpTYoEDCuncxqxXwpxdLMq9K9/jgu84rkuDSF6FGzwhbBhVmtopxU4soDbySV/+PGRjgaC7h8jja4CPNCSPkmORiwwarx0tg5waWn+YxqUHxCjOIp7jFV5FB/YrXpYNEMzkt8RNvS7ZRJq+xaizGfLhTwRVcrXFVYAT/UrdQK3IIRkYh/do1+QWWoBe63taKvZyMU4iAGVr5BqS+LDRgZgfb1KRXyldeD88swQOagNrAiKSyRJOavySQzzkUomlatnN2lp5SCTzcCAtdHnZk2MAyIYXlQ/ZSd4el5QWl0w9iPJd3eDzWdETqpBi4kOisSgr2LQc4L0nyOTmZrto1XEd1mjP8j2nRjPePpP76stgy93sAcitfMU4kGDsDFsor+I+kqMIN/tkXXj+Ih5TBvqWSkcEMSjUemULWgbGiIA1mwlf7FHVvUkYae7DMLG32CTlxhvveeKd24IdaF8gXyEujj6q476Gielu/+oiLXHR62MePbWHuRUj9GCo=
+  on:
+    tags: true
+    repo: AlayaCare/pentaho-rest-api
