@@ -1,24 +1,12 @@
 from distutils.util import strtobool
 from constants import (
-    PENTAHO_USERS_ENDPOINT_API,
-    PENTAHO_USER_ENDPOINT_DEFINITION,
-    PENTAHO_ROLES_ENDPOINT_API,
-    PENTAHO_ROLE_ENDPOINT_DEFINITION
+    PENTAHO_DEFAULT_COOKIE_NAME,
+    PENTAHO_AVAILABLE_ENDPOINT_TYPE
 )
 from users_api import PentahoUsersAPI
 from roles_api import PentahoRolesAPI
 import requests
 import urlparse
-
-
-PENTAHO_BASIC_AUTH = 'basic'
-PENTAHO_COOKIE_AUTH = 'cookie'
-PENTAHO_DEFAULT_COOKIE_NAME = 'JSESSIONID'
-
-PENTAHO_AVAILABLE_ENDPOINT_TYPE = {
-    PENTAHO_USERS_ENDPOINT_API: PENTAHO_USER_ENDPOINT_DEFINITION,
-    PENTAHO_ROLES_ENDPOINT_API: PENTAHO_ROLE_ENDPOINT_DEFINITION
-}
 
 
 class PentahoAuth(object):
@@ -79,11 +67,22 @@ class Pentaho(object):
         return valid
 
     def get_auth_kwarg(self):
+        """
+        return authentication parameters for requests object
+        :return: dict containing authentication parameters
+        """
         if self.pentaho_auth_method:
             return self.pentaho_auth_method.get_auth_kwarg()
         return {}
 
     def make_call(self, type, endpoint, **kwargs):
+        """
+        Call Pentaho REST endpoint
+        :param type: type of endpoint to call (users, roles, etc...)
+        :param endpoint: which endpoint to call (list, create, etc...)
+        :param kwargs: parameters for the requests
+        :return Response object from pentaho
+        """
         kwargs.update(**self.get_auth_kwarg())
         if type not in PENTAHO_AVAILABLE_ENDPOINT_TYPE:
             raise ValueError("[ERROR] api type improper definition... ")

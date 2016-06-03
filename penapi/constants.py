@@ -50,3 +50,17 @@ PENTAHO_ROLE_ENDPOINT_DEFINITION = {
 #     ASSIGN_PERM_TO_ROLE: "/pentaho/api/userroledao/roleAssignments",
 #     LIST_PERM_FOR_ROLE: "/pentaho/api/userroledao/logicalRoleMap",
 }
+
+
+#############################################
+# Pentaho class constant
+#############################################
+
+PENTAHO_BASIC_AUTH = 'basic'
+PENTAHO_COOKIE_AUTH = 'cookie'
+PENTAHO_DEFAULT_COOKIE_NAME = 'JSESSIONID'
+
+PENTAHO_AVAILABLE_ENDPOINT_TYPE = {
+    PENTAHO_USERS_ENDPOINT_API: PENTAHO_USER_ENDPOINT_DEFINITION,
+    PENTAHO_ROLES_ENDPOINT_API: PENTAHO_ROLE_ENDPOINT_DEFINITION
+}
