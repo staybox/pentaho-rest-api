@@ -1,8 +1,17 @@
+import os
+
 import pytest
 import requests_mock
 
 from penapi.pentaho import Pentaho
-from templates.users_api_return import LIST_USERS
+from tests import FIXTURES_DIR
+
+
+@pytest.fixture
+def list_users():
+    with open(os.path.join(FIXTURES_DIR, 'users_api.xml'), 'r') as fixture_file:
+        data = fixture_file.read().replace('\n', '')
+    return data
 
 
 @pytest.fixture
@@ -13,7 +22,7 @@ def pentaho():
 
 @requests_mock.Mocker(kw='mock_api')
 def test_user_api_list_success(mock_api, pentaho=pentaho()):
-    mock_api.get('http://test.com/pentaho/api/userroledao/users', text=LIST_USERS)
+    mock_api.get('http://test.com/pentaho/api/userroledao/users', text=list_users())
     user_list = pentaho.users.list()
     assert len(user_list) == 6
 

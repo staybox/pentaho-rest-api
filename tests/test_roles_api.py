@@ -1,19 +1,26 @@
 import pytest
 import requests_mock
+import os
 
 from penapi.pentaho import Pentaho
-from templates.roles_api_return import ROLES_USER
+from tests import FIXTURES_DIR
+
+
+@pytest.fixture
+def user_roles():
+    with open(os.path.join(FIXTURES_DIR, 'roles_api.xml'), 'r') as fixture_file:
+        data = fixture_file.read().replace('\n', '')
+    return data
 
 
 @pytest.fixture
 def pentaho():
-    pentaho = Pentaho(pentaho_base_url='http://test.com')
-    return pentaho
+    return Pentaho(pentaho_base_url='http://test.com')
 
 
 @requests_mock.Mocker(kw='mock_api')
 def test_role_api_list_success(mock_api, pentaho=pentaho()):
-    mock_api.get('http://test.com/pentaho/api/userroledao/userRoles?userName=test', text=ROLES_USER)
+    mock_api.get('http://test.com/pentaho/api/userroledao/userRoles?userName=test', text=user_roles())
     roles_list = pentaho.roles.list_for_user('test')
     assert len(roles_list) == 3
 
