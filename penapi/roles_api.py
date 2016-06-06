@@ -59,8 +59,8 @@ class PentahoRolesAPI(PentahoBaseAPI):
         :return: success/failure
         :rtype: list
         """
-        if type(roles) is not list:
-            raise ValueError("[ERROR] roles parameter must be type list... ")
+        if isinstance(roles, basestring):
+            raise ValueError("[ERROR] roles parameter must be iterable but not a string...")
         response = self._pentaho.make_call(PENTAHO_ROLES_ENDPOINT_API, REMOVE_ROLE_FROM_USER,
                                            params={USERS_USERNAME_VAR: username,
                                                    ROLES_ASSIGN_VAR: TAB_SEPARATOR.join(roles)})
