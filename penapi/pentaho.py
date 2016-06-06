@@ -12,7 +12,7 @@ import urlparse
 class PentahoAuth(object):
 
     def get_auth_kwarg(self):
-        return None
+        raise NotImplementedError()
 
 
 class PentahoBasicAuth(PentahoAuth):
@@ -75,18 +75,18 @@ class Pentaho(object):
             return self.pentaho_auth_method.get_auth_kwarg()
         return {}
 
-    def make_call(self, type, endpoint, **kwargs):
+    def make_call(self, endpoint_type, endpoint, **kwargs):
         """
         Call Pentaho REST endpoint
-        :param type: type of endpoint to call (users, roles, etc...)
+        :param endpoint_type: type of endpoint to call (users, roles, etc...)
         :param endpoint: which endpoint to call (list, create, etc...)
         :param kwargs: parameters for the requests
         :return Response object from pentaho
         """
         kwargs.update(**self.get_auth_kwarg())
-        if type not in PENTAHO_AVAILABLE_ENDPOINT_TYPE:
-            raise ValueError("[ERROR] api type improper definition... ")
-        method, url = self.get_endpoint_method_url(PENTAHO_AVAILABLE_ENDPOINT_TYPE[type], endpoint)
+        if endpoint_type not in PENTAHO_AVAILABLE_ENDPOINT_TYPE:
+            raise ValueError("[ERROR] api endpoint type %s does not exist" % endpoint_type)
+        method, url = self.get_endpoint_method_url(PENTAHO_AVAILABLE_ENDPOINT_TYPE[endpoint_type], endpoint)
         return requests.request(method, url, verify=self.do_ssl_check, **kwargs)
 
     def get_endpoint_method_url(self, type, endpoint):

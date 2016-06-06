@@ -19,6 +19,8 @@ CREATE_USERS = "create_users"
 DELETE_USERS = "delete_users"
 CHANGE_USER_PASSWORD = "change_user_password"
 
+TAB_SEPARATOR = '\t'
+
 # see documentation here https://help.pentaho.com/Documentation/6.0/0R0/070/010/0D0/0O0
 PENTAHO_USER_ENDPOINT_DEFINITION = {
     CREATE_USERS: ("put", "/pentaho/api/userroledao/createUser"),

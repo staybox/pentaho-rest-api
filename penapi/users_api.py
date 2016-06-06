@@ -3,6 +3,7 @@ import re
 import xmltodict
 
 from constants import (
+    TAB_SEPARATOR,
     PENTAHO_USERS_ENDPOINT_API,
     CREATE_USERS,
     LIST_USERS,
@@ -61,16 +62,15 @@ class PentahoUsersAPI(PentahoBaseAPI):
                                            json=user_credentials)
         return response.status_code == 200
 
-    def change_password(self, username=None, old_password=None, new_password=None):
+    def change_password(self, username, old_password, new_password):
         """
         Change password for a user in pentaho
         :param username: user to change the password
-        :param password: new password
+        :param old_password: old password
+        :param new_password: new password
         :return: success/failure
         :rtype: boolean
         """
-        if not username or not old_password or not new_password:
-            raise ValueError("[ERROR] user creation parameters missing... ")
         user_password_change = {
             USERS_USERNAME_VAR: username,
             USERS_OLD_PASSWORD_VAR: old_password,
@@ -90,7 +90,7 @@ class PentahoUsersAPI(PentahoBaseAPI):
         if not usernames:
             raise ValueError("[ERROR] user delete parameters missing... ")
         if type(usernames) is list:
-            usernames = '\t'.join(usernames)
+            usernames = TAB_SEPARATOR.join(usernames)
         response = self._pentaho.make_call(PENTAHO_USERS_ENDPOINT_API, DELETE_USERS,
                                            params={USERS_DELETE_VAR: usernames})
         return response.status_code == 200

@@ -3,6 +3,7 @@ import re
 import xmltodict
 
 from constants import (
+    TAB_SEPARATOR,
     PENTAHO_ROLES_ENDPOINT_API,
     USERS_USERNAME_VAR,
     ROLES_ASSIGN_VAR,
@@ -43,11 +44,11 @@ class PentahoRolesAPI(PentahoBaseAPI):
         :return: success/failure
         :rtype: list
         """
-        if type(roles) is not list:
-            raise ValueError("[ERROR] roles parameter must be type list... ")
+        if isinstance(roles, basestring):
+            raise ValueError("[ERROR] roles parameter must be iterable but not a string...")
         response = self._pentaho.make_call(PENTAHO_ROLES_ENDPOINT_API, ASSIGN_ROLE_TO_USER,
                                            params={USERS_USERNAME_VAR: username,
-                                                   ROLES_ASSIGN_VAR: '\t'.join(roles)})
+                                                   ROLES_ASSIGN_VAR: TAB_SEPARATOR.join(roles)})
         return response.status_code == 200
 
     def remove_from_user(self, username, roles):
@@ -62,6 +63,6 @@ class PentahoRolesAPI(PentahoBaseAPI):
             raise ValueError("[ERROR] roles parameter must be type list... ")
         response = self._pentaho.make_call(PENTAHO_ROLES_ENDPOINT_API, REMOVE_ROLE_FROM_USER,
                                            params={USERS_USERNAME_VAR: username,
-                                                   ROLES_ASSIGN_VAR: '\t'.join(roles)})
+                                                   ROLES_ASSIGN_VAR: TAB_SEPARATOR.join(roles)})
         return response.status_code == 200
 
