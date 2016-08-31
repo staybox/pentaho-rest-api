@@ -5,6 +5,7 @@ from constants import (
 )
 from users_api import PentahoUsersAPI
 from roles_api import PentahoRolesAPI
+from files_api import PentahoFilesAPI
 import requests
 import urlparse
 
@@ -43,6 +44,7 @@ class Pentaho(object):
         self.pentaho_auth_method = pentaho_auth_method
         self.users = PentahoUsersAPI(self)
         self.roles = PentahoRolesAPI(self)
+        self.files = PentahoFilesAPI(self)
 
     def set_auth_method(self, pentaho_auth_method):
         self.pentaho_auth_method = pentaho_auth_method
@@ -75,7 +77,7 @@ class Pentaho(object):
             return self.pentaho_auth_method.get_auth_kwarg()
         return {}
 
-    def make_call(self, endpoint_type, endpoint, **kwargs):
+    def make_call(self, endpoint_type, endpoint, url_addition='', **kwargs):
         """
         Call Pentaho REST endpoint
         :param endpoint_type: type of endpoint to call (users, roles, etc...)
@@ -85,9 +87,10 @@ class Pentaho(object):
         """
         kwargs.update(**self.get_auth_kwarg())
         if endpoint_type not in PENTAHO_AVAILABLE_ENDPOINT_TYPE:
-            raise ValueError("[ERROR] api endpoint type %s does not exist" % endpoint_type)
+            raise ValueError("[ERROR] api endpoint type {} does not exist".format(endpoint_type))
         method, url = self.get_endpoint_method_url(PENTAHO_AVAILABLE_ENDPOINT_TYPE[endpoint_type], endpoint)
-        return requests.request(method, url, verify=self.do_ssl_check, **kwargs)
+        return requests.request(method, url + url_addition,
+                                verify=self.do_ssl_check, **kwargs)
 
     def get_endpoint_method_url(self, type, endpoint):
         """

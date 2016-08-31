@@ -13,6 +13,8 @@ _pentaho_obj = Pentaho()
 
 users = _pentaho_obj.users
 roles = _pentaho_obj.roles
+files = _pentaho_obj.files
+
 
 
 def set_basic_auth_method(username, password):
