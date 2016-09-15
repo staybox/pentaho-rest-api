@@ -53,6 +53,23 @@ PENTAHO_ROLE_ENDPOINT_DEFINITION = {
 #     LIST_PERM_FOR_ROLE: "/pentaho/api/userroledao/logicalRoleMap",
 }
 
+#############################################
+# Files Endpoint
+#############################################
+
+PENTAHO_FILES_ENDPOINT_API = "files"
+
+CREATE_DIRECTORY = "create_directory"
+LIST_DIRECTORY = "list_directory"
+GET_ACL = "get_acl"
+SET_ACL = "set_acl"
+
+PENTAHO_FILE_ENDPOINT_DEFINITION = {
+    CREATE_DIRECTORY: ("put", "/pentaho/api/repo/dirs/"),
+    LIST_DIRECTORY: ("get", "/pentaho/api/repo/files/"),
+    GET_ACL: ("get", "/pentaho/api/repo/files/"),
+    SET_ACL: ("put", "/pentaho/api/repo/files/")
+}
 
 #############################################
 # Pentaho class constant
@@ -64,5 +81,6 @@ PENTAHO_DEFAULT_COOKIE_NAME = 'JSESSIONID'
 
 PENTAHO_AVAILABLE_ENDPOINT_TYPE = {
     PENTAHO_USERS_ENDPOINT_API: PENTAHO_USER_ENDPOINT_DEFINITION,
-    PENTAHO_ROLES_ENDPOINT_API: PENTAHO_ROLE_ENDPOINT_DEFINITION
+    PENTAHO_ROLES_ENDPOINT_API: PENTAHO_ROLE_ENDPOINT_DEFINITION,
+    PENTAHO_FILES_ENDPOINT_API: PENTAHO_FILE_ENDPOINT_DEFINITION
 }
