@@ -23,7 +23,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
         name='pentaho-rest-api',
 
-        version='1.0.19',
+        version='1.0.20',
 
         include_package_data=True,
 
