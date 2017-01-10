@@ -14,6 +14,11 @@ USERS_NEW_PASSWORD_VAR = "newPassword"
 USERS_OLD_PASSWORD_VAR = "oldPassword"
 USERS_DELETE_VAR = "userNames"
 
+ROLE_CREATE_VAR = "roleName"
+ROLE_DELETE_VAR = "roleNames"
+ROLE_LIST_MEMBERS_VAR = "roleName"
+ROLE_MAP_LOCALE_VAR = "locale"
+
 LIST_USERS = "list_users"
 CREATE_USERS = "create_users"
 DELETE_USERS = "delete_users"
@@ -40,17 +45,23 @@ ROLES_ASSIGN_VAR = "roleNames"
 GET_ROLES_FOR_USER = "list_user_roles"
 ASSIGN_ROLE_TO_USER = "assign_role_to_user"
 REMOVE_ROLE_FROM_USER = "remove_role_from_user"
+CREATE_ROLE = "create_role"
+DELETE_ROLE = "delete_role"
+LIST_ROLES = "list_roles"
+LIST_MEMBERS_ROLE = "list_members_role"
+ASSIGN_PERM_TO_ROLE = "assign_perm_to_role"
+LIST_PERM_ROLE_MAP = "perm_role_map"
 
 PENTAHO_ROLE_ENDPOINT_DEFINITION = {
     GET_ROLES_FOR_USER: ("get", "/pentaho/api/userroledao/userRoles"),
     ASSIGN_ROLE_TO_USER: ("put", "/pentaho/api/userroledao/assignRoleToUser"),
-    REMOVE_ROLE_FROM_USER: ("put", "/pentaho/api/userroledao/removeRoleFromUser")
-#     CREATE_ROLE: "/pentaho/api/userroledao/createRole",
-#     DELETE_ROLE: "/pentaho/api/userroledao/deleteRoles",
-#     LIST_ROLES: "/pentaho/api/userroledao/roles",
-#     LIST_MEMBERS_ROLE: "/pentaho/api/userroledao/roleMembers",
-#     ASSIGN_PERM_TO_ROLE: "/pentaho/api/userroledao/roleAssignments",
-#     LIST_PERM_FOR_ROLE: "/pentaho/api/userroledao/logicalRoleMap",
+    REMOVE_ROLE_FROM_USER: ("put", "/pentaho/api/userroledao/removeRoleFromUser"),
+    CREATE_ROLE: ("put", "/pentaho/api/userroledao/createRole"),
+    DELETE_ROLE: ("put", "/pentaho/api/userroledao/deleteRoles"),
+    LIST_ROLES: ("get", "/pentaho/api/userroledao/roles"),
+    LIST_MEMBERS_ROLE: ("get", "/pentaho/api/userroledao/roleMembers"),
+    ASSIGN_PERM_TO_ROLE: ("put", "/pentaho/api/userroledao/roleAssignments"),
+    LIST_PERM_ROLE_MAP: ("get", "/pentaho/api/userroledao/logicalRoleMap")
 }
 
 #############################################
