@@ -12,6 +12,12 @@ def list_roles():
     return data
 
 
+def list_one_role():
+    with open(os.path.join(FIXTURES_DIR, 'one_role_api.xml'), 'r') as fixture_file:
+        data = fixture_file.read().replace('\n', '')
+    return data
+
+
 def list_users():
     with open(os.path.join(FIXTURES_DIR, 'users_api.xml'), 'r') as fixture_file:
         data = fixture_file.read().replace('\n', '')
@@ -30,10 +36,17 @@ def pentaho():
 
 
 @requests_mock.Mocker(kw='mock_api')
-def test_role_api_list_user_success(mock_api, pentaho=pentaho()):
+def test_role_api_list_user_role_success(mock_api, pentaho=pentaho()):
     mock_api.get('http://test.com/pentaho/api/userroledao/userRoles?userName=test', text=list_roles())
     roles_list = pentaho.roles.list_for_user('test')
     assert len(roles_list) == 3
+
+
+@requests_mock.Mocker(kw='mock_api')
+def test_role_api_list_user_one_success(mock_api, pentaho=pentaho()):
+    mock_api.get('http://test.com/pentaho/api/userroledao/userRoles?userName=test', text=list_one_role())
+    roles_list = pentaho.roles.list_for_user('test')
+    assert len(roles_list) == 1
 
 
 @requests_mock.Mocker(kw='mock_api')

@@ -41,7 +41,10 @@ class PentahoRolesAPI(PentahoBaseAPI):
                                            params={USERS_USERNAME_VAR: username})
         if response.status_code == 200:
             try:
-                role_list = xmltodict.parse(response.text)['roleList']['roles']
+                if isinstance(xmltodict.parse(response.text)['roleList']['roles'], basestring):
+                    role_list = [xmltodict.parse(response.text)['roleList']['roles']]
+                else:
+                    role_list = xmltodict.parse(response.text)['roleList']['roles']
             except Exception, e:
                 logger.exception(e)
         return role_list
