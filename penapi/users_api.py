@@ -29,7 +29,7 @@ class PentahoUsersAPI(PentahoBaseAPI):
     def list(self, regex=None):
         """
         Get list of all users
-        :param pentaho: the pentaho user object
+        :param regex: filter pattern
         :return: success/failure
         :rtype: list
         """
